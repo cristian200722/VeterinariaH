@@ -11,6 +11,7 @@ El proyecto permitirá gestionar información relacionada con **clientes, mascot
 - 🗄️ PostgreSQL
 - 🔗 Spring Data JPA
 - ⚙️ Hibernate
+- ✈️ Flyway
 
 ## 🚧 Estado del proyecto
 
