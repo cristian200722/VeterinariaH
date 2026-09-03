@@ -8,6 +8,7 @@ export default function App() {
   const [clientes, setClientes] = useState([]);
   const [cargando, setCargando] = useState(true);
   const [error, setError] = useState(null);
+  const [busqueda, setBusqueda] = useState('');
   const [modalAbierto, setModalAbierto] = useState(false);
   const [clienteEditando, setClienteEditando] = useState(null);
 
@@ -18,15 +19,18 @@ export default function App() {
       const data = await getClientes();
       setClientes(data);
     } catch {
-      setError('No se pudieron cargar los clientes. Verifique que el servidor esté corriendo.');
+      setError('No se pudo conectar con el servidor. Verifique que el backend esté corriendo.');
     } finally {
       setCargando(false);
     }
   }, []);
 
-  useEffect(() => {
-    cargarClientes();
-  }, [cargarClientes]);
+  useEffect(() => { cargarClientes(); }, [cargarClientes]);
+
+  const clientesFiltrados = clientes.filter((c) =>
+    `${c.nombre} ${c.apellido} ${c.email} ${c.telefono ?? ''}`.toLowerCase()
+      .includes(busqueda.toLowerCase())
+  );
 
   function abrirCrear() {
     setClienteEditando(null);
@@ -66,22 +70,60 @@ export default function App() {
   return (
     <div className="app">
       <header className="app-header">
-        <h1>VeterinariaH — Clientes</h1>
-        <button className="btn-primary" onClick={abrirCrear}>+ Nuevo cliente</button>
+        <div className="header-brand">
+          <span className="header-icon">🐾</span>
+          <h1>
+            VeterinariaH
+            <span>Sistema de gestión veterinaria</span>
+          </h1>
+        </div>
+        <button className="btn-primary" onClick={abrirCrear}>
+          + Nuevo cliente
+        </button>
       </header>
 
       <main className="app-main">
-        {cargando ? (
-          <p className="cargando">Cargando...</p>
-        ) : error ? (
-          <p className="error-msg">{error}</p>
-        ) : (
-          <ClienteTable
-            clientes={clientes}
-            onEditar={abrirEditar}
-            onEliminar={eliminar}
-          />
+        {error && (
+          <div className="error-banner">
+            <span>⚠️</span>
+            {error}
+          </div>
         )}
+
+        <div className="card">
+          <div className="card-toolbar">
+            <div className="card-toolbar-left">
+              <h2 className="card-title">Clientes</h2>
+              {!cargando && !error && (
+                <span className="badge">{clientesFiltrados.length}</span>
+              )}
+            </div>
+            <div className="search-wrap">
+              <span className="search-icon">🔍</span>
+              <input
+                className="search-input"
+                type="search"
+                placeholder="Buscar por nombre, email…"
+                value={busqueda}
+                onChange={(e) => setBusqueda(e.target.value)}
+              />
+            </div>
+          </div>
+
+          {cargando ? (
+            <div className="estado-cargando">
+              <div className="spinner" />
+              Cargando clientes…
+            </div>
+          ) : (
+            <ClienteTable
+              clientes={clientesFiltrados}
+              busqueda={busqueda}
+              onEditar={abrirEditar}
+              onEliminar={eliminar}
+            />
+          )}
+        </div>
       </main>
 
       {modalAbierto && (

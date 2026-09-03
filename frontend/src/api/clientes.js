@@ -1,9 +1,15 @@
 const BASE = '/api/v1/clientes';
 
+async function parseResponse(res) {
+  const text = await res.text();
+  const body = text ? JSON.parse(text) : null;
+  if (!res.ok) throw body;
+  return body;
+}
+
 export async function getClientes() {
   const res = await fetch(BASE);
-  if (!res.ok) throw new Error('Error al obtener clientes');
-  return res.json();
+  return parseResponse(res);
 }
 
 export async function createCliente(data) {
@@ -12,9 +18,7 @@ export async function createCliente(data) {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(data),
   });
-  const body = await res.json();
-  if (!res.ok) throw body;
-  return body;
+  return parseResponse(res);
 }
 
 export async function updateCliente(id, data) {
@@ -23,15 +27,10 @@ export async function updateCliente(id, data) {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(data),
   });
-  const body = await res.json();
-  if (!res.ok) throw body;
-  return body;
+  return parseResponse(res);
 }
 
 export async function deleteCliente(id) {
   const res = await fetch(`${BASE}/${id}`, { method: 'DELETE' });
-  if (!res.ok) {
-    const body = await res.json().catch(() => ({}));
-    throw body;
-  }
+  return parseResponse(res);
 }
