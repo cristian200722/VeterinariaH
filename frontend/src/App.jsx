@@ -71,10 +71,10 @@ export default function App() {
       </header>
 
       <main className="app-main">
-        {error && <p className="error-msg">{error}</p>}
-
         {cargando ? (
           <p className="cargando">Cargando...</p>
+        ) : error ? (
+          <p className="error-msg">{error}</p>
         ) : (
           <ClienteTable
             clientes={clientes}
