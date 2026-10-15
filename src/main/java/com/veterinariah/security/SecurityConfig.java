@@ -53,6 +53,7 @@ public class SecurityConfig {
         ));
 
         configuration.setAllowCredentials(false);
+        configuration.setMaxAge(1800L);
 
         UrlBasedCorsConfigurationSource source =
                 new UrlBasedCorsConfigurationSource();

@@ -1,10 +1,10 @@
 const BASE = `${import.meta.env.VITE_API_URL}/api/v1/clientes`;
 
-function getHeaders() {
+function getHeaders(includeJson = false) {
   const token = localStorage.getItem('token');
 
   return {
-    'Content-Type': 'application/json',
+    ...(includeJson ? { 'Content-Type': 'application/json' } : {}),
     ...(token && {
       Authorization: `Bearer ${token}`
     })
@@ -31,7 +31,7 @@ export async function getClientes() {
 export async function createCliente(data) {
   const res = await fetch(BASE, {
     method: 'POST',
-    headers: getHeaders(),
+    headers: getHeaders(true),
     body: JSON.stringify(data),
   });
 
@@ -41,7 +41,7 @@ export async function createCliente(data) {
 export async function updateCliente(id, data) {
   const res = await fetch(`${BASE}/${id}`, {
     method: 'PUT',
-    headers: getHeaders(),
+    headers: getHeaders(true),
     body: JSON.stringify(data),
   });
 
