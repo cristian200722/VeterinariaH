@@ -1053,3 +1053,133 @@
   padding: 0;
   justify-content: center;
 }
+
+/* ── Adaptación general para tabletas y celulares ── */
+@media (max-width: 900px) {
+  .app-main { padding: 22px; }
+  .app-header { padding: 0 22px; }
+  .dashboard-cards { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .dashboard { padding: 26px 22px; }
+  .reportes-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+@media (max-width: 640px) {
+  .panel-layout { flex-direction: column; }
+
+  /* La navegación pasa a la parte superior y se puede desplazar horizontalmente. */
+  .sidebar,
+  .sidebar-abierto,
+  .sidebar-cerrado {
+    position: sticky;
+    top: 0;
+    width: 100%;
+    height: auto;
+    min-height: 0;
+    flex: 0 0 auto;
+  }
+  .sidebar-header,
+  .sidebar-cerrado .sidebar-header {
+    height: 62px;
+    padding: 0 14px;
+    justify-content: space-between;
+  }
+  .sidebar-brand,
+  .sidebar-cerrado .sidebar-brand { display: flex; }
+  .sidebar-brand-text { display: block; }
+  .sidebar-logo { font-size: 1.5rem; }
+  .sidebar-toggle,
+  .sidebar-cerrado .sidebar-toggle { position: static; }
+  .sidebar-menu,
+  .sidebar-cerrado .sidebar-menu {
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+    gap: 6px;
+    padding: 8px 10px;
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    scrollbar-width: thin;
+  }
+  .sidebar-item,
+  .sidebar-cerrado .sidebar-item {
+    width: auto;
+    min-width: max-content;
+    height: 42px;
+    padding: 0 12px;
+    justify-content: flex-start;
+  }
+  .sidebar-cerrado .sidebar-item-text,
+  .sidebar-item-text { display: inline; }
+  .sidebar-footer,
+  .sidebar-cerrado .sidebar-footer {
+    position: absolute;
+    top: 7px;
+    right: 58px;
+    margin: 0;
+    padding: 0;
+    border: 0;
+  }
+  .sidebar-logout,
+  .sidebar-cerrado .sidebar-logout {
+    width: auto;
+    height: 42px;
+    padding: 0 10px;
+    justify-content: center;
+  }
+  .sidebar-footer .sidebar-item-icon { width: auto; }
+
+  .app-header {
+    min-height: 64px;
+    height: auto;
+    padding: 12px 16px;
+    gap: 12px;
+  }
+  .header-brand { min-width: 0; gap: 9px; }
+  .header-brand h1 { font-size: 1rem; }
+  .header-brand span { font-size: 0.68rem; }
+  .header-icon { font-size: 1.5rem; }
+  .btn-primary,
+  .btn-secondary { min-height: 42px; padding: 9px 12px; }
+  .app-main { padding: 16px 12px; }
+  .card-toolbar { align-items: stretch; flex-direction: column; padding: 14px; gap: 12px; }
+  .card-toolbar-left { min-height: 28px; }
+  .search-wrap, .search-input { width: 100%; }
+  .tabla-responsive { -webkit-overflow-scrolling: touch; }
+  .tabla-clientes th, .tabla-clientes td { padding: 10px 12px; }
+  .tabla-mascotas { min-width: 780px; }
+
+  .dashboard { min-height: auto; padding: 24px 16px; }
+  .dashboard-header { margin-bottom: 20px; }
+  .dashboard-header h1 { font-size: 1.5rem; }
+  .dashboard-cards { grid-template-columns: 1fr; gap: 12px; }
+  .dashboard-card { padding: 17px; }
+  .reportes-grid { grid-template-columns: minmax(0, 1fr); gap: 12px; }
+  .reporte-card { padding: 18px; }
+  .reporte-acciones { gap: 8px; margin-top: 16px; }
+  .reporte-boton { flex: 1 1 130px; }
+
+  .modal-overlay { align-items: flex-end; padding: 0; }
+  .modal {
+    max-height: 92dvh;
+    overflow-y: auto;
+    border-radius: 16px 16px 0 0;
+  }
+  .modal-header { padding: 18px 18px 0; }
+  .modal-body { padding: 16px 18px 22px; }
+  .form-fila { grid-template-columns: minmax(0, 1fr); gap: 0; }
+  .modal-footer { flex-direction: column-reverse; }
+  .modal-footer button { width: 100%; justify-content: center; }
+
+  .login-page { padding: 14px; }
+  .login-box { padding: 28px 22px; }
+}
+
+@media (max-width: 380px) {
+  .sidebar-brand-text span { display: none; }
+  .sidebar-logout .sidebar-item-text { display: none; }
+  .sidebar-footer { right: 52px; }
+  .app-header { align-items: flex-start; flex-direction: column; }
+  .app-header > .btn-primary { width: 100%; justify-content: center; }
+  .header-brand h1 span { max-width: 220px; }
+  .login-box { padding: 24px 18px; }
+}
