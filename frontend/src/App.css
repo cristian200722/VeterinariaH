@@ -668,6 +668,32 @@
   font-size: 0.82rem;
 }
 
+.login-success {
+  margin-bottom: 18px;
+  padding: 10px 12px;
+  border: 1px solid #a7f3d0;
+  border-radius: var(--radius-sm);
+  background: #ecfdf5;
+  color: #065f46;
+  font-size: 0.82rem;
+}
+
+.login-link {
+  display: block;
+  margin: 16px auto 0;
+  padding: 6px;
+  border: 0;
+  background: transparent;
+  color: var(--primary-dark);
+  font: inherit;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.login-link:hover { text-decoration: underline; }
+.login-field small { color: var(--text-muted); font-size: 0.75rem; }
+
 .login-button {
   width: 100%;
   margin-top: 8px;

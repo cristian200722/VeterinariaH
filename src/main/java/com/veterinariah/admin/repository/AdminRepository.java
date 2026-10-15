@@ -9,4 +9,6 @@ public interface AdminRepository extends JpaRepository<Admin, Long> {
 
     Optional<Admin> findByCorreo(String correo);
 
+    Optional<Admin> findByCorreoIgnoreCase(String correo);
+
 }

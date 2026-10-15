@@ -20,7 +20,7 @@ public class AuthService {
     public LoginResponseDto login(LoginRequestDto dto) {
 
         Admin admin = adminRepository
-                .findByCorreo(dto.correo().trim().toLowerCase())
+                .findByCorreoIgnoreCase(dto.correo().trim())
                 .orElseThrow(() ->
                         new RuntimeException("Correo o contraseña incorrectos")
                 );
