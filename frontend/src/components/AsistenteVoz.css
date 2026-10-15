@@ -1,0 +1,137 @@
+.asistente-voz {
+  position: fixed;
+  z-index: 1200;
+  right: 22px;
+  bottom: 22px;
+  display: flex;
+  align-items: flex-end;
+  flex-direction: column;
+  gap: 12px;
+  font-family: inherit;
+}
+
+.asistente-voz-abrir,
+.asistente-voz-microfono,
+.asistente-voz-encabezado button {
+  border: 0;
+  cursor: pointer;
+  font: inherit;
+}
+
+.asistente-voz-abrir {
+  width: 58px;
+  height: 58px;
+  border-radius: 50%;
+  color: #fff;
+  background: #0c8f83;
+  box-shadow: 0 8px 22px rgb(0 0 0 / 20%);
+  font-size: 25px;
+}
+
+.asistente-voz-abrir:hover,
+.asistente-voz-microfono:not(:disabled):hover {
+  background: #08766d;
+}
+
+.asistente-voz-panel {
+  width: min(360px, calc(100vw - 32px));
+  padding: 18px;
+  border: 1px solid #dce6e8;
+  border-radius: 18px;
+  background: #fff;
+  box-shadow: 0 16px 44px rgb(0 0 0 / 20%);
+  color: #18323a;
+}
+
+.asistente-voz-encabezado {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.asistente-voz-encabezado div {
+  display: grid;
+  gap: 4px;
+}
+
+.asistente-voz-encabezado strong {
+  font-size: 1.05rem;
+}
+
+.asistente-voz-encabezado span,
+.asistente-voz-ayuda {
+  color: #667980;
+  font-size: 0.84rem;
+  line-height: 1.45;
+}
+
+.asistente-voz-encabezado button {
+  width: 30px;
+  height: 30px;
+  border-radius: 8px;
+  color: #38545a;
+  background: #eff5f6;
+  font-size: 22px;
+  line-height: 1;
+}
+
+.asistente-voz-estado {
+  margin: 16px 0 10px;
+  font-weight: 600;
+}
+
+.asistente-voz-consentimiento {
+  display: flex;
+  align-items: flex-start;
+  gap: 9px;
+  padding: 11px;
+  border-radius: 10px;
+  background: #f2f7f7;
+  color: #425b61;
+  font-size: 0.78rem;
+  line-height: 1.4;
+}
+
+.asistente-voz-consentimiento input {
+  flex: 0 0 auto;
+  margin-top: 2px;
+  accent-color: #0c8f83;
+}
+
+.asistente-voz-error {
+  margin: 12px 0 0;
+  color: #a32626;
+  font-size: 0.85rem;
+  line-height: 1.4;
+}
+
+.asistente-voz-microfono {
+  display: flex;
+  width: 100%;
+  min-height: 46px;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 14px;
+  border-radius: 10px;
+  color: #fff;
+  background: #0c8f83;
+  font-weight: 700;
+}
+
+.asistente-voz-microfono:disabled {
+  cursor: not-allowed;
+  opacity: 0.55;
+}
+
+.asistente-voz-ayuda {
+  margin: 10px 0 0;
+}
+
+@media (max-width: 480px) {
+  .asistente-voz {
+    right: 14px;
+    bottom: 14px;
+  }
+}

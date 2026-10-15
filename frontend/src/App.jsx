@@ -8,6 +8,7 @@ import MascotaTable from './components/MascotaTable';
 import MascotaForm from './components/MascotaForm';
 import Reportes from './components/Reportes';
 import Sidebar from './components/Sidebar';
+import AsistenteVoz from './components/AsistenteVoz';
 
 import './App.css';
 
@@ -433,6 +434,7 @@ export default function App() {
         {renderContenido()}
       </div>
 
+      <AsistenteVoz />
     </div>
   );
 }

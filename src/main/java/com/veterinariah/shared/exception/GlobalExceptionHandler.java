@@ -8,6 +8,7 @@ import com.veterinariah.auth.exception.CodigoRecuperacionInvalidoException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -46,6 +47,14 @@ public class GlobalExceptionHandler {
         log.warn("JSON inválido recibido: {}", ex.getMessage());
         return ResponseEntity.status(HttpStatus.BAD_REQUEST)
                 .body(Map.of("error", "El cuerpo de la solicitud debe ser un JSON válido"));
+    }
+
+    @ExceptionHandler(ResponseStatusException.class)
+    public ResponseEntity<Map<String, String>> manejarEstadoHttp(ResponseStatusException ex) {
+        String mensaje = ex.getReason() == null
+                ? "No fue posible completar la solicitud. Intenta de nuevo."
+                : ex.getReason();
+        return ResponseEntity.status(ex.getStatusCode()).body(Map.of("error", mensaje));
     }
 
     @ExceptionHandler(Exception.class)
