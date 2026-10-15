@@ -12,6 +12,7 @@ export default function Sidebar({
     { id: 'clientes', icono: '👥', nombre: 'Clientes' },
     { id: 'mascotas', icono: '🐾', nombre: 'Mascotas' },
     { id: 'servicios', icono: '🩺', nombre: 'Servicios' },
+    { id: 'reportes', icono: '📊', nombre: 'Reportes' },
   ];
 
   return (
